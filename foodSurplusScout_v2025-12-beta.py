@@ -22,7 +22,7 @@ st.set_page_config(page_title="Food Surplus Scout", layout="wide")
 # ------------------------------------------------------------------
 # TITLE & INTRODUCTORY TEXT
 # ------------------------------------------------------------------
-st.title("FOOD SURPLUS SCOUT (Beta v1.0)")
+st.title("SURPLUS FOOD SCOUT (Beta v1.0)")
 
 # CONSTRAINT: [3, 1] ratio keeps text readable (75% width) 
 c_content, c_spacer = st.columns([3, 1])
