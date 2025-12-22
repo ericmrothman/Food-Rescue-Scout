@@ -31,7 +31,7 @@ with c_content:
     st.markdown("""
     ### A tool for food rescuers to scout surpluses and make hit lists.
     
-    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface potential sources of food surplus near you. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have surfaced otherwise.      
+    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface potential sources of food surplus near you. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have found or thought of otherwise.      
     #### ⚠️ Keep in Mind:
     * **Estimates ≠ Reality:** The waste estimates below are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements. In some cases, they are obviously, very, comically wrong. Use your judgement!
     * **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
