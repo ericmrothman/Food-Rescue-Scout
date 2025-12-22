@@ -30,15 +30,12 @@ c_content, c_spacer = st.columns([3, 1])
 with c_content:
     st.markdown("""
     ### A tool for food rescuers to scout surpluses and make hit lists.
-    """)
     
-    st.caption("Powered by the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map)")
-    
-    st.markdown("""
+    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface potential sources of food surplus near you. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have surfaced otherwise.      
     #### ⚠️ Keep in Mind:
-    * **Estimates ≠ Reality:** The waste estimates below hopefully guide you to some interesting leads you wouldn’t have surfaced otherwise. However, they are just a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements. In some cases, they are obviously, very, comically wrong. Use your judgement!
+    * **Estimates ≠ Reality:** The waste estimates below are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements. In some cases, they are obviously, very, comically wrong. Use your judgement!
     * **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
-    * **Data Quirks:** Data may be outdated, inaccurate, or just plain weird. Many entries have '0' estimated waste, which is likely due to missing data elsewhere. Worth scoping these! 
+    * **Data Quirks:** Data may be outdated, inaccurate, or just plain weird. Many entries have '0' estimated waste, which is likely wrong, and due to missing data elsewhere. Worth scoping these! 
     * **Beta Limitations:** Results are currently limited to a 50 mile radius of Dayton, Ohio. 
     """)
 
