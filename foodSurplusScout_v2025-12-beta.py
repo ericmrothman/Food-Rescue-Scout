@@ -22,7 +22,24 @@ st.set_page_config(page_title="Food Surplus Scout", layout="wide")
 # ------------------------------------------------------------------
 # TITLE & INTRODUCTORY TEXT
 # ------------------------------------------------------------------
+# A visual cue pointing to the top left
+st.markdown("""
+    <div style="
+        background-color: #e8f5e9; 
+        color: #1b5e20; /* <--- This forces dark green text so it's readable */
+        padding: 12px; 
+        border-radius: 5px; 
+        margin-bottom: 25px; 
+        border-left: 6px solid #2E7D32;
+        font-size: 16px;
+    ">
+        <strong>👈 Make sure the sidebar is open to access full controls.
+    </div>
+""", unsafe_allow_html=True)
+
 st.title("SURPLUS FOOD SCOUT (Beta v1.0)")
+
+
 
 # CONSTRAINT: [3, 1] ratio keeps text readable (75% width) 
 c_content, c_spacer = st.columns([3, 1])
