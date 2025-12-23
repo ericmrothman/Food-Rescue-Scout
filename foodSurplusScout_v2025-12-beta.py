@@ -22,18 +22,34 @@ st.set_page_config(page_title="Food Surplus Scout", layout="wide")
 # ------------------------------------------------------------------
 # TITLE & INTRODUCTORY TEXT
 # ------------------------------------------------------------------
-# A visual cue pointing to the top left
+# ------------------------------------------------------------------
+# CALL TO ACTION (Mobile Only via CSS)
+# ------------------------------------------------------------------
+# This HTML block is always "sent" to the browser, but CSS hides it on desktops.
 st.markdown("""
-    <div style="
-        background-color: #e8f5e9; 
-        color: #1b5e20; /* <--- This forces dark green text so it's readable */
-        padding: 12px; 
-        border-radius: 5px; 
-        margin-bottom: 25px; 
-        border-left: 6px solid #2E7D32;
-        font-size: 16px;
-    ">
-        <strong>👈 Make sure the sidebar is open to access full controls.
+    <style>
+    /* Default: Hide the banner on big screens */
+    .mobile-cta {
+        display: none;
+    }
+    
+    /* Media Query: Show it ONLY on screens smaller than 768px (Mobile/Tablets) */
+    @media only screen and (max-width: 768px) {
+        .mobile-cta {
+            display: block;
+            background-color: #e8f5e9; 
+            color: #1b5e20;
+            padding: 12px; 
+            border-radius: 5px; 
+            margin-bottom: 25px; 
+            border-left: 6px solid #2E7D32;
+            font-size: 16px;
+        }
+    }
+    </style>
+
+    <div class="mobile-cta">
+        <strong>☝️ Tap the arrows in the top left corner of the screen to open the control panel.
     </div>
 """, unsafe_allow_html=True)
 
