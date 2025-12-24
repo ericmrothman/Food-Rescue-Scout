@@ -62,9 +62,9 @@ c_content, c_spacer = st.columns([3, 1])
 
 with c_content:
     st.markdown("""
-    #### A tool for researching surpluses & planning outreach   
+    #### A tool for discovering food surpluses near you.  
     
-    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface potential sources of food surplus near you. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have found or thought of otherwise.      
+    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to generate a map and contact list of potential food surpluses within a specified radius. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have found or thought of otherwise.      
     """) 
 st.markdown("---")
 
