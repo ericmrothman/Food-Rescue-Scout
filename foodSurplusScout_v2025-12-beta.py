@@ -53,7 +53,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.title("SURPLUS FOOD SCOUT (Beta v1.0)")
+st.title("SURPLUS FOOD SCOUT (Beta v1.1)")
 
 
 
@@ -62,16 +62,10 @@ c_content, c_spacer = st.columns([3, 1])
 
 with c_content:
     st.markdown("""
-    ### A tool for food rescuers to scout surpluses and make hit lists.
+    #### A tool for researching surpluses & planning outreach   
     
     This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface potential sources of food surplus near you. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have found or thought of otherwise.      
-    #### ⚠️ Keep in Mind:
-    * **Estimates ≠ Reality:** The waste estimates below are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements. In some cases, they are obviously, very, comically wrong. Use your judgement!
-    * **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
-    * **Data Quirks:** Data may be outdated, inaccurate, or just plain weird. Many entries have '0' estimated waste, which is likely wrong, and due to missing data elsewhere. Worth scoping these! 
-    * **Beta Limitations:** Results are currently limited to a 50 mile radius of Dayton, Ohio. 
-    """)
-
+    """) 
 st.markdown("---")
 
 # --- CONFIG ---
@@ -111,7 +105,7 @@ def create_pdf(df):
     
     # Title
     pdf.set_font("Arial", 'B', 16)
-    pdf.cell(0, 10, "Food Rescue Hit List Report", ln=True, align='C')
+    pdf.cell(0, 10, "Surplus Food Contact List", ln=True, align='C')
     pdf.ln(10)
     
     # Disclaimer in PDF
@@ -253,7 +247,20 @@ st.sidebar.info("👋 I'd love your ideas for making this more useful. 📫 Get 
 final_df = get_nearby_data(filtered_df, hq_lat, hq_lon, search_radius, min_waste)
 
 # --- MAP CONSTRUCTION ---
-m = folium.Map(location=[hq_lat, hq_lon], zoom_start=12, tiles="CartoDB positron")
+m = folium.Map(location=[hq_lat, hq_lon], tiles="CartoDB positron")
+
+# Calculate a bounding box based on the search radius (in miles)
+# 1 degree of latitude is approx 69 miles
+lat_offset = search_radius / 69.0
+# Longitude varies by latitude (approx 69 * cos(lat))
+lon_offset = search_radius / (69.0 * np.cos(np.radians(hq_lat)))
+
+# Define the South-West and North-East corners
+sw_corner = [hq_lat - lat_offset, hq_lon - lon_offset]
+ne_corner = [hq_lat + lat_offset, hq_lon + lon_offset]
+
+# Force the map to fit this bounding box
+m.fit_bounds([sw_corner, ne_corner])
 
 map_custom_css = """
 <style>
@@ -377,19 +384,40 @@ else:
 # ------------------------------------------------------------------
 # RENDER MAP
 # ------------------------------------------------------------------
-st.markdown("### 🗺️ Interactive Map")
-st.caption("Hover for summary. Click for details.")
+count = len(final_df)
 
-c1, c2 = st.columns([19, 1]) 
+# 1. The Banner (Full Width)
+st.markdown(f"""
+    <div style="
+        text-align: center;
+        background-color: rgba(46, 125, 50, 0.15); 
+        padding: 15px; 
+        border-radius: 10px; 
+        border: 1px solid #2e7d32; 
+        margin-bottom: 20px;
+    ">
+        <span style="font-size: 28px; margin-right: 5px;">🥕</span> 
+        <span style="font-size: 35px; font-weight: bold; color: #66bb6a;">{count}</span>
+        <span style="font-size: 20px; margin: 0 8px; color: #EEE;">potential surpluses found near</span>
+        <span style="font-size: 28px; font-weight: bold; color: #ffa726; font-family: monospace;">{zip_code}</span>
+    </div>
+""", unsafe_allow_html=True)
 
-with c1:
-    st_folium(m, width=None, height=500, returned_objects=[])
+# 2. Map 
+st_folium(m, width=None, height=500, returned_objects=[])
 
-st.markdown("---")
+# 3. Disclaimer 
+st.info("""
+**⚠️ Keep in Mind:**
+* **Estimates ≠ Reality:** The waste estimates are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements.
+* **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
+* **Data Quirks:** Data may be outdated or inaccurate. Entries with '0' estimated waste are likely due to missing data.
+* **Beta Limitations:** Results are currently limited to a 50 mile radius of Dayton, Ohio. 
+""")
 
 # --- DATA TABLE & EXPORTS ---
 if not final_df.empty:
-    st.markdown("### 📋 Hit List")
+    st.markdown("### 📋 Contact List")
     
     # ----------------------------------------------------------------
     # PREPARE DATA
