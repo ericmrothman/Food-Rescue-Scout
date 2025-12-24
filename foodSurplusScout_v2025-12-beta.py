@@ -62,10 +62,9 @@ c_content, c_spacer = st.columns([3, 1])
 
 with c_content:
     st.markdown("""
-    #### A tool for discovering food surpluses near you.  
+    ### 🥣 Helping food rescue operations discover untapped, nearby surplus
     
-    This app uses the [EPA Excess Food Opportunities Data (v3.1)](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to generate a map and contact list of potential food surpluses within a specified radius. The data is far from perfect, but hopefully helps guide you toward leads you wouldn’t have found or thought of otherwise.      
-    """) 
+This tool uses [EPA data](https://www.epa.gov/sustainable-management-food/excess-food-opportunities-map) to surface **hidden, high-volume generators**—like wholesalers, manufacturers, and institutions–guiding you toward potential surplus sources you might not have thought of.""")
 st.markdown("---")
 
 # --- CONFIG ---
@@ -409,9 +408,9 @@ st_folium(m, width=None, height=500, returned_objects=[])
 # 3. Disclaimer 
 st.info("""
 **⚠️ Keep in Mind:**
-* **Estimates ≠ Reality:** The waste estimates are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on other, potentially correlated data–not actual measurements.
+* **Estimates ≠ Reality:** The waste estimates are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on potentially correlated data–not actual measurements. Estimates also include non-edible, organic waste. 
 * **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
-* **Data Quirks:** Data may be outdated or inaccurate. Entries with '0' estimated waste are likely due to missing data.
+* **Data Quirks:** Data may be outdated or inaccurate. Some entries have '0' estimated waste, likely due to missing data. Still worth investigating!
 * **Beta Limitations:** Results are currently limited to a 50 mile radius of Dayton, Ohio. 
 """)
 
