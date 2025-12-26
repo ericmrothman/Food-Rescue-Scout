@@ -329,6 +329,15 @@ with col_details:
 
 st.markdown("---")
 
+# 3. Disclaimer 
+st.info("""
+**⚠️ Keep in Mind:**
+* **Estimates ≠ Reality:** The waste estimates are a ["best guess"](https://www.epa.gov/system/files/documents/2025-02/efom_v3_1_technical_methodology.pdf) based on potentially correlated data–not actual measurements. Estimates also include non-edible, organic waste. 
+* **Ignores Existing Rescue:** The model does not know if a generator already has a rescue partner.
+* **Data Quirks:** Data may be outdated or inaccurate. Some entries have '0' estimated waste, likely due to missing data. Still worth investigating!
+* **Beta Limitations:** Results are currently limited to a 50 mile radius of Dayton, Ohio. 
+""")
+
 # ----------------------------------------------------------------
 # DATA TABLE
 # ----------------------------------------------------------------
